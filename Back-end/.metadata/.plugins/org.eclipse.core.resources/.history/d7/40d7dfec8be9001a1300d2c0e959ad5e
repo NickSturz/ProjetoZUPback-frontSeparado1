@@ -1,0 +1,5 @@
+package com.zuppersBoot.domain.repository;
+
+public class usuariosRepository {
+
+}

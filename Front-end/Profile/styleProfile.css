@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 10px; /* definir uma font-size padrão */
+  }
+  
+  body {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul {
+    padding: 0;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  /* define que as imagens tem que ter o tamanho máximo da div mãe */
+  .img-responsive {
+    width: 40%;
+  }
+
+  
+  /* define o tamanho da caixa */
+  .container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+  }
+  
+  /* --- NAV --- */
+  .navegacao {
+    background-color: #000066;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    transition: all 1s;
+  }
+
+  .navegacao__logo {
+    max-width: 200px;
+  }
+
+  .navegacao__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navegacao__itens {
+    transition: all 1s;
+    position: absolute;
+    right: -800px;
+    top: 85px;
+    width: 100%;
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .navegacao__itens.ativo {
+    display: block;
+    right: 0;
+    top: 85px;
+    width: 100%;
+    text-align: center;
+    padding: 3rem 0;
+    transition: right 0.5s;
+  }
+
+  .navegacao__itens li > a {
+    transition: all 0.5s;
+  }
+  
+  .navegacao__itens li > a:hover {
+    color: orange;
+  }
+  
+  .navegacao__nav {
+    margin-bottom: 3rem;
+    margin-right: 2rem;
+  }
+
+  .navegacao__nav li {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+
+  .navegacao__menu-hamburguer img {
+    border-radius: 5px;
+  }
+  .hamb{
+      width: 30px;
+      color:white;
+  }
+
+  .fotoPerfil{
+    margin:auto;
+    text-align: center;
+    padding-top: 10rem;
+
+  }
+    .imgPerfil{
+     box-shadow: 4px;
+     width: 200px;
+     text-align: center;
+     border-radius: 10px;
+     margin-top: 10rem;
+     margin:auto;
+ }
+
+    .nomePerfil{
+        color:orange;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .formSobre{
+        background-color: #e0e0eb;
+        padding: 20px;
+    }
+
+    .sobreZ{
+        font-size: 15px;
+        padding: 20px;
+        margin-left: 20px;
+    }
+
+    .conqueror{
+        font-size: 20px;
+        color:orange;
+        padding: 15px;
+        margin: auto;
+        text-align: center;
+        align-items: center;
+    }
+
+
+  /* --- FOOTER --- */
+  .rodape {
+    background-color: #323534;
+    color: white;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+  }
+  
+  .rodape__cc {
+    width: 100%;
+    background-color: #292a2a;
+    font-size: 1rem;
+    opacity: 0.5;
+    text-align: center;
+    padding-top: 8px;
+  }
+  
+  
+ 
+  /*** MEDIA QUERIES ***/
+  /* TABLET */
+  @media (min-width: 768px) {
+    /* --- NAV --- */
+    .navegacao__itens {
+      position: static;
+      display: flex;
+      padding: 0;
+      width: auto;
+    }
+  
+    .navegacao__nav {
+      margin-bottom: 0;
+    }
+  
+    .navegacao__itens ul {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .navegacao__itens li {
+      font-size: 1.2rem;
+      margin: 0 0.6rem;
+    }
+
+    /* --- FOOTER --- */
+    .rodape {
+      padding-top: 0;
+    }
+}
+    
+  
+  @media (min-width: 1024px) {
+    .principal {
+      max-width: 650px;
+    }
+    .sobreZ{
+        font-size: 20px;
+    }
+    .nomePerfil{
+        font-size: 38px;
+    }
+    .conqueror{
+        font-size: 25px;
+    }
+    .rodape__cc{
+        font-size: 1.6rem;
+    }
+  };  
+  
+  /* DESKTOP */
+  @media (min-width: 1440px) {
+    .navegacao__box {
+      max-width: 80%;
+    }
+    
+    .navegacao__itens li {
+      font-size: 1.5rem;
+      margin: 0 1rem;
+    }
+  }

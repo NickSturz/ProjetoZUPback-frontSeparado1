@@ -1,0 +1,91 @@
+package com.zuppersBoot.api.controller;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.el.stream.Optional;
+import com.zuppersBoot.domain.model.Usuarios;
+import com.zuppersBoot.domain.repository.UsuariosRepository;
+
+@RestController
+@RequestMapping("/usuario")
+public class usuariosController {
+	
+	@Autowired
+	private UsuariosRepository usuariosRepository;
+
+	//Achar todos
+	@GetMapping
+	public List<Usuarios> listar(){
+		return usuariosRepository.findAll();
+	}
+	
+	//Achar específico
+	@GetMapping("/{usuarioId}")
+	public ResponseEntity<Usuarios> buscar(@PathVariable Long usuarioId){
+		Optional<Usuarios> usuario = usuariosRepository.findById(usuarioId);
+		
+		
+		if(usuario.isPresent()) {
+			return ResponseEntity.ok(usuario.get());
+		} 
+		return ResponseEntity.notFound().build();
+	}
+	
+	//Adicionar user
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Usuarios adicionar(@RequestBody Usuarios usuario) {
+		return usuariosRepository.save(usuario);
+	}
+	
+	//Atualizar user específico
+	@PutMapping("/{usuarioId}")
+	public ResponseEntity<Usuarios> atualizar(@PathVariable Long usuarioId, @RequestBody Usuarios usuario){
+		if (!usuariosRepository.existsById(usuarioId)) {
+			return ResponseEntity.notFound().build();
+		}
+		usuario.setCodigo(usuarioId);
+		usuario = usuariosRepository.save(usuario);
+		
+		return ResponseEntity.ok(usuario);
+	}
+	
+	//Excluir user
+	@DeleteMapping("/{usuarioId}")
+	public ResponseEntity<Void> remover(@PathVariable Long usuarioId){
+		if (!usuariosRepository.existsById(usuarioId)) {
+			return ResponseEntity.notFound().build();
+		}
+		usuariosRepository.deleteById(usuarioId);
+		return ResponseEntity.noContent().build();
+	}
+	
+	/*TESTE PUXANDO DIRETO HTML --
+	 * @RequestMapping(value="/cadastrarUsuario", method=RequestMethod.GET)
+	public String form() {
+		return "usuarios/indexCreate";
+	}*/
+		
+	/*@RequestMapping(value="/cadastrarUsuario", method=RequestMethod.POST)
+	public String form(Usuarios evento) {	
+		UsuariosRepository.save(evento);	
+		return "redirect:/../index";
+	}*/
+}

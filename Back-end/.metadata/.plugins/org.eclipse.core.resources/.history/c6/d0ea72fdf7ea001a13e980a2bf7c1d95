@@ -1,0 +1,5 @@
+package com.zuppersBoot.api.exceptionhandler;
+
+public class ApiExceptionHandler {
+
+}

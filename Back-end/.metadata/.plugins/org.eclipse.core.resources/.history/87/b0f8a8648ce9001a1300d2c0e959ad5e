@@ -1,0 +1,36 @@
+package com.zuppersBoot.api.controller;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import com.zuppersBoot.domain.model.Usuarios;
+import com.zuppersBoot.domain.repository.usuariosRepository;
+
+@RestController
+public class usuariosController {
+	
+	@Autowired
+	private usuariosRepository usuariosRepository;
+	
+	@GetMapping("/usuario")
+	public List<Usuarios> listar(){
+		return usuariosRepository.findAll();
+	}
+	
+	@RequestMapping(value="/cadastrarUsuario", method=RequestMethod.GET)
+	public String form() {
+		return "usuarios/indexCreate";
+	}
+
+		
+	@RequestMapping(value="/cadastrarUsuario", method=RequestMethod.POST)
+	public String form(Usuarios evento) {	
+		usuariosRepository.save(evento);	
+		return "redirect:/cadastrarUsuario";
+	}
+}

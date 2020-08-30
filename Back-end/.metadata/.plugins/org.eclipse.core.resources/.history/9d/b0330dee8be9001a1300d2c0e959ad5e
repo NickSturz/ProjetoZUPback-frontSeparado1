@@ -1,0 +1,5 @@
+package com.zuppersBoot.domain.model;
+
+public class Usuarios {
+
+}
